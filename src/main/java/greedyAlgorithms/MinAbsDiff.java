@@ -1,5 +1,7 @@
 package greedyAlgorithms;
 
+import java.util.Arrays;
+
 /**
  * This class is for designing a solution for "Minimum Absolute Difference in an Array" 
  */
@@ -9,18 +11,16 @@ public class MinAbsDiff {
 		
 		int minAbsDiffValue = Integer.MAX_VALUE;
 		
+		Arrays.sort(arr);
+		
 		for(int i = 0; i < arr.length - 1; i++) {
-			for(int j = i + 1; j < arr.length; j++) {
-				//Don't compare the same values
-				if(i == j)
-					continue;
-				//Calculate the min abs diff between i and j
-				int diff = Math.abs(arr[i] - arr[j]);
+			
+				//Calculate the min abs diff between the two consecutive items
+				int diff = Math.abs(arr[i] - arr[i + 1]);
 				
 				if(diff < minAbsDiffValue)
 					minAbsDiffValue = diff;
 				
-			}
 		}
 		
 		return minAbsDiffValue;
