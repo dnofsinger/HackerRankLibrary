@@ -1,6 +1,8 @@
 package search;
 
 import java.util.Arrays;
+import java.util.Hashtable;
+import java.util.Set;
 
 public class IceCreamParlor {
 
@@ -9,19 +11,20 @@ public class IceCreamParlor {
 		int firstFlavor = 0;
 		int secondFlavor = 0;
 		
-		//Look through array and find two flavors for the money.
-		
-		//Look for first flavor:
-		for(int i = 0; i < cost.length - 1; i++) {
-			for(int j = i + 1; j < cost.length; j++) {
-				if(money == cost[i] + cost[j]) {
-					firstFlavor = i + 1;
-					secondFlavor = j + 1;
-				}
+		Hashtable<Integer, Integer> costHashtable = new Hashtable<>();
+
+		for(int i = 0; i < cost.length; i++) {
+			int complement = money - cost[i];
+			if(costHashtable.containsKey(complement)) {
+				firstFlavor = costHashtable.get(complement) + 1;
+				secondFlavor = i + 1;
+				break;
 			}
+			costHashtable.put(cost[i], i);
 		}
 		
 		System.out.println(firstFlavor + " " + secondFlavor);
-    }
+    
+	}
 	
 }
