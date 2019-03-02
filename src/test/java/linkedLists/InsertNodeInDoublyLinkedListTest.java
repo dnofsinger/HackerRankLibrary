@@ -2,18 +2,38 @@ package linkedLists;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
+import java.util.HashMap;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class InsertNodeInDoublyLinkedListTest {
+	
+	TestLinkedListCreator testCaseCreator;
+	HashMap<Integer, TestCase> testCases;
 
 	@Before
 	public void setUp() throws Exception {
+		testCaseCreator = new TestLinkedListCreator();
+		testCaseCreator.readFromFile(new File("C:\\Users\\Owner\\git\\HackerRankLibrary\\src\\test\\java\\linkedLists\\DoublyLinkedListInsert_TestCase2.txt"));
+		testCases = testCaseCreator.createTestCases();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		testCases = null;
+	}
+	
+	@Test
+	public void testNumOfTestCases() {
+		assertEquals(14, testCases.size());
+	}
+	
+	@Test
+	public void testHackerRankTestCase2() {
+		
 	}
 
 	@Test
